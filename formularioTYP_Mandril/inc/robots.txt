@@ -1,0 +1,5 @@
+# Prohibir la entrada a los buscadores
+
+User-agent: *
+Disallow: /
+
