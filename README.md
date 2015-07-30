@@ -1,2 +1,2 @@
-# Scripts comuness
+# Scripts comunes
 Scripts Codigos y Procesos estandarizados
