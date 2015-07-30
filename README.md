@@ -1,2 +1,2 @@
-# scp-estandars
+# Scripts comunes
 Scripts Codigos y Procesos estandarizados
