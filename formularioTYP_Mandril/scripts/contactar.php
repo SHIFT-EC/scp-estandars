@@ -27,8 +27,8 @@ if($error_inputs==0){
 			$slprevio->execute();
 		}catch(Exception $e){
 			//SI EL SELECT A LA BASE NO SE HIZO CORRECTAMENTE
-			echo 'no encontro repetido '.$e;
-			//presentarError();
+			//echo 'no encontro repetido '.$e;
+			presentarError();
 			exit;
 		}		
 		//OBTENGO EL NUMERO DE INSCRITOS CON ESE CORREO
@@ -57,8 +57,8 @@ if($error_inputs==0){
 				}
 			catch(Exception $e){
 					//SI EL INGRESO A LA BASE NO SE HIZO CORRECTAMENTE
-					echo 'ingreso a la base malo '.$e;
-					//presentarError();
+					//echo 'ingreso a la base malo '.$e;
+					presentarError();
 					exit;
 			}
 			
@@ -70,21 +70,22 @@ if($error_inputs==0){
 		}else{
 			//SI SE INSCRIBIO ANTERIORMENTE SOLO ENVIAR CORREO Y PRESENTAR TYP
 			enviarCorreo($campos['email'],$campos['nombre'].' '.$campos['apellido']);
+			enviarLead($_POST);
 			presentarTYP();
 			exit;
 		}
 				
 	//SI HUBO ALGUN ERROR EN EL TRANSCURSO DEL PROCESO
 	}catch(Exception $e){
-		echo 'proceso general '.$e;
-		//presentarError();
+		//echo 'proceso general '.$e;
+		presentarError();
 		exit;
 	}
 
 //SI HUBO ERROR EN EL INGRESO DE LOS CAMPOS
 }else{
-	echo 'inputs';
-	//presentarError();
+	//echo 'inputs';
+	presentarError();
 	exit;
 }
 

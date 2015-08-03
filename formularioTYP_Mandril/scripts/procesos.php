@@ -1,7 +1,8 @@
 <?php
 
 require_once "../inc/config.php";
-
+require_once("../inc/correo_mandrill.class.php");
+	
 function clean_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -20,7 +21,6 @@ function presentarTYP(){
 
 function enviarCorreo($correoCliente,$nombreCliente){
 	
-	require_once("../inc/correo_mandrill.class.php");
 
 		$mensaje="			
 			<div style='width:600px; border:solid thin #00B085;'>					
@@ -47,8 +47,6 @@ function enviarCorreo($correoCliente,$nombreCliente){
 
 
 function enviarLead($post){
-	
-	require_once("../inc/correo_mandrill.class.php");
 
 		$mensaje="			
 			<div style='width:600px; border:solid thin #00B085;'>					
@@ -59,10 +57,10 @@ function enviarLead($post){
 						</td>
 						<td width='60%'>
 							<p style='padding:20px;'>
-								Se ha recibido un nuevo registro, los datos son los siguientes.";
+								Se ha recibido un nuevo registro, los datos son los siguientes.<br><br>";
 		//IMPRIMIR LOS CAMPOS DEL LEAD
 		foreach ($post as $key => $value) {
-			$mensaje.=strtoupper($key).': '.$value['val'];
+			$mensaje.=strtoupper($key).': '.$value['val'].'<br>';
 		}
 		
 		$mensaje.="
@@ -75,7 +73,7 @@ function enviarLead($post){
 			</div>			
 		";
 		
-		enviar(SUBJECT, NOMBRE_DESDE, $mensaje, CORREO_DESDE, CORREO_LEAD, NOMBRE_DESDE, "sinadjunto", ORIGEN);
+		enviar(SUBJECT_LEAD, NOMBRE_DESDE, $mensaje, CORREO_DESDE, CORREO_LEAD, NOMBRE_DESDE, "sinadjunto", ORIGEN);
 }
 
 
